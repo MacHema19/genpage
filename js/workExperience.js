@@ -8,44 +8,45 @@ class TimelineEntry {
     this.detailClass = this.detailClass || 'text-muted';
   }
 
-  renderImage() {
+  renderCompanyLogo() {
     if (this.imageHtml) {
-      return `<div class="timeline-image">${this.imageHtml}</div>`;
+      return `<div class="company-avatar">${this.imageHtml}</div>`;
     }
 
     if (!this.image) {
-      return '<div class="timeline-image"></div>';
+      return '<div class="company-avatar empty-avatar"></div>';
     }
 
     return `
-      <div class="timeline-image">
-        <img class="rounded-circle img-fluid" src="${this.image}" alt="${this.title}">
+      <div class="company-avatar">
+        <img src="${this.image}" alt="${this.title}">
       </div>
     `;
   }
 
-  renderHeading() {
-    const titleAttributes = this.titleClass ? ` class="${this.titleClass}"` : '';
-    const title = `<${this.titleTag}${titleAttributes}>${this.title}</${this.titleTag}>`;
+  renderCompanyInfo() {
+    const companyName = this.subtitleUrl
+      ? `<a href="${this.subtitleUrl}" target="_blank" rel="noopener noreferrer">${this.title}</a>`
+      : this.title;
 
-    if (this.subtitle && this.subtitleUrl) {
-      return `${title}
-        <${this.subtitleTag} class="${this.subtitleClass}"><a href="${this.subtitleUrl}" target="_blank" rel="noopener noreferrer">${this.subtitle}</a></${this.subtitleTag}>`;
-    }
+    const companySubtitle = this.subtitle ? `<div class="company-subtitle">${this.subtitle}</div>` : '';
 
-    if (this.subtitle) {
-      return `${title}
-        <${this.subtitleTag} class="${this.subtitleClass}">${this.subtitle}</${this.subtitleTag}>`;
-    }
-
-    return title;
+    return `
+      <div class="timeline-company-info">
+        ${this.renderCompanyLogo()}
+        <div class="company-details">
+          <div class="company-name">${companyName}</div>
+          ${companySubtitle}
+        </div>
+      </div>
+    `;
   }
 
   renderRole() {
     if (!this.role) {
       return '';
     }
-    return `<h5>${this.role}</h5>`;
+    return `<div class="timeline-job-title">${this.role}</div>`;
   }
 
   renderDetails() {
@@ -61,22 +62,27 @@ class TimelineEntry {
   render() {
     if (this.isCallToAction) {
       return `
-        <li class="timeline-inverted">
-          ${this.renderImage()}
+        <li class="timeline-entry call-to-action">
+          <div class="timeline-panel cta-panel">
+            ${this.renderCompanyLogo()}
+            <div class="timeline-cta-text">${this.title}</div>
+          </div>
         </li>
       `;
     }
 
     return `
-      <li${this.inverted ? ' class="timeline-inverted"' : ''}>
-        ${this.renderImage()}
+      <li class="timeline-entry${this.inverted ? ' timeline-inverted' : ''}">
         <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4>${this.duration}</h4>
-            ${this.renderHeading()}
-            <hr>
+          <div class="timeline-card-header">
             ${this.renderRole()}
+            <div class="timeline-duration">${this.duration}</div>
           </div>
+          <div class="timeline-divider"></div>
+          <div class="timeline-card-company">
+            ${this.renderCompanyInfo()}
+          </div>
+          <div class="timeline-divider"></div>
           <div class="timeline-body">
             ${this.renderDetails()}
           </div>

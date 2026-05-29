@@ -12,7 +12,7 @@ const WORK_EXPERIENCE_TIMELINE = [
     duration: 'May 17, 2017 - Present',
     title: 'Averis  Technology,Inc (Malaysia)',
     subtitleUrl: 'http://www.dxc.technology/Asia',
-    role: 'Sennior Technology Manager | Digital Transformation Leader',
+    role: 'SENIOR MANAGER - TRANSFORMATION',
     image: 'img/work/averis.png',
     details: 'Led enterprise transformation and cloud-enabled platform delivery across AgTech, plantation, manufacturing, logistics, and corporate business environments, supporting modern application delivery, data platform enablement, automation, and operational analytics.Owned solution design, technical review, implementation planning, DevOps enablement, release governance, and transition-to-support readiness, ensuring cloud and enterprise systems were scalable, secure, supportable, and aligned with business and operational objectives. Guided engineering teams in building data pipelines, cloud-based platforms, dashboards, and operational reporting solutions across Azure, AWS, GCP BigQuery/Dataflow, Snowflake, Databricks, Spark, Airflow, dbt, Docker, Jenkins, GitHub Actions, GitLab, and Terraform',
     inverted: true
@@ -21,7 +21,7 @@ const WORK_EXPERIENCE_TIMELINE = [
     duration: 'May 17, 2017 - Present',
     title: 'DXC Technology,Inc (Malaysia)',
     subtitleUrl: 'http://www.dxc.technology/Asia',
-    role: 'Business Consultant Level III Automate Engineering',
+    role: 'SENIOR SOFTWARE CONSULTANT (L4) ',
     image: 'img/work/DXC.png',
     details: 'Overview – Performed Comprehensive Automate Scripting, Stakeholder Management, Problem Solution Management, Critical Incident Management, Security Operation Center (SOC) Monitoring for Various Security Tools e.g. SIEM, Project Management, Quality Assurance, System Testing, On Job Staff Training and etc. for MNC Clients.',
     inverted: false
@@ -29,7 +29,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   {
     duration: 'Aug 2016 - April 2017',
     title: 'INFOCONNECT SDN BHD, Damansara (Malaysia)',
-    role: 'Software Engineer (Java)',
+    role: 'SENIOR SOFTWARE ENGINEER ',
     image: 'img/work/Infoconnect.jpg',
     details: 'Developed web based application framework for multiple insurances and banking industry for their internal operation. Was based at multiple client center, AMMETLIFE, Takaful IKHLAS to work on web development at client location.',
     inverted: true
@@ -52,7 +52,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Aug 2009 - Aug 2010',
-    title: 'HEWLETT PACKARD ENTERPRISE, Damansara (Malaysia)',
+    title: 'HPE, Damansara (Malaysia)',
     role: 'Assistant Team Lead IT Service Desk',
     image: 'img/work/hpe.jpg',
     details: 'Oversee group of first level support service desk analysts delivering IT Technical Resolution Support and Service Escalation for Global Corporate Clients on a 24/7 basis. Worked closely with incident management, second level support, operation management, quality management, training, KPI documentation, and escalation procedures.',
@@ -103,7 +103,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Oct 2012 - Oct 2013',
-    title: 'Scope International (wholly subsidiary of Standard Chartered Bank), Bukit Jalil (Malaysia)',
+    title: 'Scope Int Standard Chartered Bank Bukit Jalil',
     role: 'Project Coordinator',
     image: 'img/work/scope.png',
     details: 'Coordinated interbank project enhancement on existing banking related projects with project directors from international branches (e.g. Kenya, New York, etc.).',
@@ -111,10 +111,10 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Jun 2006 - Jun 2008',
-    title: 'Scope International (wholly subsidiary of Standard Chartered Bank), Bukit Jalil (Malaysia)',
+    title: 'Scope Int Standard Chartered Bank Bukit Jalil',
     role: 'Back End Financial Operation Authorizer',
     image: 'img/work/scope.png',
-    details: 'Worked on ITT and OTT of Financial Instruction Cash Management Transaction with the bank.',
+    details: 'Managed high-value financial transaction processing across TT, OTT, FX, and Money Market operations using legacy banking transaction platforms, ensuring timely and accurate execution of transactions often valued at hundreds of millions in line with strict cut-off and control requirements.',
     inverted: false
   },
   {
@@ -125,10 +125,10 @@ const WORK_EXPERIENCE_TIMELINE = [
     details: 'Developed various web and mobile application frameworks in multiple languages including Java, PHP, Python, HTML, CSS and JavaScript. Passionate about software development technologies and delivered freelance and pro bono work in WordPress, Magento, Joomla and Android mobile apps.',
     inverted: true
   },
-  {
-    title: 'Be Part Of Our Story!',
-    imageHtml: '<h4>Be Part<br>Of Our<br>Story!</h4>',
-    inverted: true,
-    isCallToAction: true
-  }
+  // {
+  //   title: 'Be Part Of Our Story!',
+  //   imageHtml: '<h4>Be Part<br>Of Our<br>Story!</h4>',
+  //   inverted: true,
+  //   isCallToAction: true
+  // }
 ];
