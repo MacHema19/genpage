@@ -28,7 +28,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Aug 2016 - April 2017',
-    title: 'INFOCONNECT SDN BHD, Damansara (Malaysia)',
+    title: 'INFOCONNECT (Malaysia)',
     role: 'SENIOR SOFTWARE ENGINEER ',
     image: 'img/work/Infoconnect.jpg',
     details: 'Developed web based application framework for multiple insurances and banking industry for their internal operation. Was based at multiple client center, AMMETLIFE, Takaful IKHLAS to work on web development at client location.',
@@ -36,7 +36,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Aug 2015 - Oct 2015',
-    title: 'XYNAPSE SDN BHD, Bukit Jalil (Malaysia)',
+    title: 'XYNAPSE SDN BHD,  (Malaysia)',
     role: 'Software Engineer (Java)',
     image: 'img/work/xynapse.jpg',
     details: 'Developed web framework for client network (Maxis Inc – a telecom based organization) in both front end interface (HTML, CSS, AngularJS) and back end integration using Java Programming Language (J2EE) integrated with database (LDAP) which integrated with various other business application schema in management studio.',
@@ -44,7 +44,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'September 2010 - September 2012',
-    title: 'CSC MALAYSIA SDN BHD, Petaling Jaya (Malaysia)',
+    title: 'CSC MALAYSIA SDN BHD, (Malaysia)',
     role: 'Critical Incident Manager',
     image: 'img/work/csc.jpeg',
     details: 'Managed IT Infrastructure Management for Multiple MNC Clients branches located internationally in Asia Pacific and Europe. Performed Daily Service Review on Service Status, Post Incident Response Analysis, Root Cause Analysis and supervised multiple engineering teams and first level service IT helpdesk support.',
@@ -60,7 +60,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'July 2008 - July 2009',
-    title: 'MYOB SDN BHD, Bukit Jalil (Malaysia)',
+    title: 'MYOB SDN BHD,(Malaysia)',
     role: 'IT Technical Representative',
     image: 'img/work/myob-logo.jpg',
     details: 'Delivered IT & Accounting Technical Support for SME Business Clients based in Australia and New Zealand over phone calls and live stream. Acquired business development opportunity leads from clients and expanded project ROI by 25%.',
@@ -119,8 +119,8 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Jan 2010 - Present',
-    title: 'Dynamic DTS Resources Sdn Bhd [Self Employed]',
-    role: 'Founder and CEO',
+    title: 'Self Employed',
+    role: 'Software Consultant',
     image: 'img/about/4.jpg',
     details: 'Developed various web and mobile application frameworks in multiple languages including Java, PHP, Python, HTML, CSS and JavaScript. Passionate about software development technologies and delivered freelance and pro bono work in WordPress, Magento, Joomla and Android mobile apps.',
     inverted: true
