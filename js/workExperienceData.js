@@ -6,7 +6,7 @@ const WORK_EXPERIENCE_TIMELINE = [
     role: 'VP, IT Deployment Lead Manager ',
     image: 'img/work/axa.png',
     details: 'Led enterprise deployment governance and production with AWS Control Tower on readiness across 1,000+ applications spanning on-premise, cloud, middleware, hybrid, data, and enterprise platform environments across APAC, Europe, and the Americas, ensuring controlled release execution, rollback planning, audit traceability, and compliance alignment. Supported secure implementation of Generative AI-enabled and automation-driven platform initiatives by reviewing application dependencies, access requirements, API/data integration risks, security readiness,and operational governance before production deployment.Partnered with application, middleware, infrastructure, cloud, QA, security, vendor, and operations teams to assess release risk, technical dependencies, environment readiness, service impact, and production support requirements for enterprise systems operating in regulatedinsurance environments..',
-    inverted: true
+    inverted: false
   },
    {
     duration: 'May 17, 2017 - Present',
