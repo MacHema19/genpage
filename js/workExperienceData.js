@@ -103,7 +103,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Oct 2012 - Oct 2013',
-    title: 'Scope Int Standard Chartered Bank Bukit Jalil',
+    title: 'Scope Int Standard Chartered Bank ',
     role: 'Project Coordinator',
     image: 'img/work/scope.png',
     details: 'Coordinated interbank project enhancement on existing banking related projects with project directors from international branches (e.g. Kenya, New York, etc.).',
@@ -111,7 +111,7 @@ const WORK_EXPERIENCE_TIMELINE = [
   },
   {
     duration: 'Jun 2006 - Jun 2008',
-    title: 'Scope Int Standard Chartered Bank Bukit Jalil',
+    title: 'Scope Int Standard Chartered Bank ',
     role: 'Back End Financial Operation Authorizer',
     image: 'img/work/scope.png',
     details: 'Managed high-value financial transaction processing across TT, OTT, FX, and Money Market operations using legacy banking transaction platforms, ensuring timely and accurate execution of transactions often valued at hundreds of millions in line with strict cut-off and control requirements.',
