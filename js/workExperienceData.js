@@ -74,7 +74,7 @@ const WORK_EXPERIENCE_TIMELINE = [
     subtitleTag: 'h4',
     titleClass: 'text-uppercase',
     subtitleClass: 'subheading text-uppercase',
-    role: 'Bachelor of Science (Hons) Information Technology major into Information System Security',
+    role: 'Bachelor of Science (Hons) Information System Security ',
     image: 'img/portfolio/staffordshire.jpg',
     detailsHtml: `
       <h5 class="text-left">Summary Coursework :</h5>
@@ -118,11 +118,11 @@ const WORK_EXPERIENCE_TIMELINE = [
     inverted: false
   },
   {
-    duration: 'Jan 2010 - Present',
-    title: 'Self Employed',
+    duration: 'Jan 2010 - Dec 2020',
+    title: 'Freelance Self Employed',
     role: 'Software Consultant',
     image: 'img/about/4.jpg',
-    details: 'Developed various web and mobile application frameworks in multiple languages including Java, PHP, Python, HTML, CSS and JavaScript. Passionate about software development technologies and delivered freelance and pro bono work in WordPress, Magento, Joomla and Android mobile apps.',
+    details: 'Provided software development, cloud architecture, and IT consulting services to clients across various industries, leveraging expertise in modern application development, cloud platforms, and enterprise systems to deliver scalable and secure solutions aligned with business objectives.',
     inverted: true
   },
   // {
