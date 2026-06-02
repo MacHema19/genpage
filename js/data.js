@@ -226,7 +226,7 @@ window.PortfolioData = {
       desc: "An extension of the VirusTotal public API enabling malware analysis across up to 20 hashes per request — 4× the standard 5-hash limit.",
       full: "A desktop analysis tool that extends the VirusTotal public API so security engineers can scan up to 20 file hashes in a single request rather than the default five. It aggregates results from dozens of antivirus engines and online scanners, surfacing detections that a single vendor's engine might miss and reducing false-positive triage time for the SOC.",
       outcome: "API framework scalable with OAuth2 and authentication with sandbox environment has been built .",
-      img: "https://machema19.github.io/img/eBay-API.jpg",
+      img: "img/eBay-API.jpg",
       link: "https://github.com/MacHema19/Hema_EbayDevAPi",
     },
     {
