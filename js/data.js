@@ -217,6 +217,18 @@ window.PortfolioData = {
   ],
 
   projects: [
+       {
+      title: "Ebay Developer API Integration",
+      category: "Security",
+      year: "2017",
+      client: "Ebay Technology Technology",
+      tech: ["Python", "FastAPI", "Docker", "Terraform, AWS, Azure"],
+      desc: "An extension of the VirusTotal public API enabling malware analysis across up to 20 hashes per request — 4× the standard 5-hash limit.",
+      full: "A desktop analysis tool that extends the VirusTotal public API so security engineers can scan up to 20 file hashes in a single request rather than the default five. It aggregates results from dozens of antivirus engines and online scanners, surfacing detections that a single vendor's engine might miss and reducing false-positive triage time for the SOC.",
+      outcome: "Quadrupled per-request hash throughput and accelerated SOC malware triage.",
+      img: "https://machema19.github.io/img/portfolio/lock.png",
+      link: "https://github.com/MacHema19/Hema_EbayDevAPi",
+    },
     {
       title: "Advanced Malware Analysis Tool",
       category: "Security",
