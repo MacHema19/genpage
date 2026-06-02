@@ -220,7 +220,7 @@ window.PortfolioData = {
        {
       title: "Ebay Developer API Integration",
       category: "Security",
-      year: "2017",
+      year: "2026",
       client: "Ebay Technology Technology",
       tech: ["Python", "FastAPI", "Docker", "Terraform, AWS, Azure"],
       desc: "An extension of the VirusTotal public API enabling malware analysis across up to 20 hashes per request — 4× the standard 5-hash limit.",
@@ -238,7 +238,7 @@ window.PortfolioData = {
       desc: "An extension of the VirusTotal public API enabling malware analysis across up to 20 hashes per request — 4× the standard 5-hash limit.",
       full: "A desktop analysis tool that extends the VirusTotal public API so security engineers can scan up to 20 file hashes in a single request rather than the default five. It aggregates results from dozens of antivirus engines and online scanners, surfacing detections that a single vendor's engine might miss and reducing false-positive triage time for the SOC.",
       outcome: "Quadrupled per-request hash throughput and accelerated SOC malware triage.",
-      img: "https://machema19.github.io/img/portfolio/lock.png",
+      img: "https://machema19.github.io/img/mobile_sec.jpeg",
       link: "https://github.com/MacHema19",
     },
     {
@@ -250,7 +250,7 @@ window.PortfolioData = {
       desc: "A self-initiated web platform that auto-publishes the latest global security incidents to enterprise SOC engineers on an hourly basis.",
       full: "A web framework built for an enterprise security engineering team that automatically aggregates and republishes new articles and advisories from authoritative security sources on an hourly basis. It became a one-stop intelligence hub keeping engineers current on the latest threats, technologies and disclosures relevant to their daily work — a self-motivated project proposed to upskill the department.",
       outcome: "Centralised hourly threat intelligence for the entire security team.",
-      img: "https://machema19.github.io/img/portfolio/knw.jpeg",
+      img: "https://machema19.github.io/img/lock.png",
       link: "https://github.com/MacHema19",
     },
     {
