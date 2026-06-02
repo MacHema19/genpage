@@ -57,21 +57,23 @@ window.PortfolioData = {
   //    site and SA deck. Edit freely; achievements draw from your summary.
   experience: [
     {
-      role: "Solution Architect / Platform Governance Lead",
+      role: "Solution Architect / VP, IT Deployment Governance Lead",
       company: "AXA",
-      date: "2021 — Present",
+      date: "June 2023 — Present",
       location: "Insurance · APAC / Global",
       bullets: [
         "Lead secure enterprise platform delivery and deployment governance across regulated insurance systems.",
         "Drive cloud transformation and cloud-native platform controls aligned to operational risk and audit requirements.",
         "Establish DevSecOps practices, release governance and audit-ready evidence across delivery teams.",
       ],
-      tags: ["AWS", "Azure", "DevSecOps", "Governance", "Risk Controls"],
+      tags: ["AWS", "Azure", "DevSecOps", "Governance", "Risk Controls", "Dynatrace", "AWS Glue", "AWS Lambda", "Azure Functions"
+
+      ],
     },
     {
-      role: "Senior Software / DevOps Engineer",
+      role: "Senior Technology Manager | Digital Transformation",
       company: "Averis",
-      date: "2018 — 2021",
+      date: "June 2019 — June 2023",
       location: "Shared Services · APAC",
       bullets: [
         "Delivered enterprise application automation, reporting automation and system health-check tooling.",
@@ -81,7 +83,7 @@ window.PortfolioData = {
       tags: ["Python", "CI/CD", "Automation", "ITSM", "Linux"],
     },
     {
-      role: "Security / Enterprise Application Engineer",
+      role: "Security / Enterprise Software Engineer (Level 4)",
       company: "DXC Technology",
       date: "2015 — 2018",
       location: "Cybersecurity · Global",
@@ -94,8 +96,32 @@ window.PortfolioData = {
     },
     {
       role: "Software Engineer · Early Career",
-      company: "Enterprise & AgTech roles",
+      company: "Infoconnect Sdn Bhd ",
       date: "2007 — 2015",
+      location: "Multiple · APAC / UK",
+      bullets: [
+        "Deployed e-commerce platforms across Django, Flask, Ruby on Rails, WordPress and Joomla.",
+        "Built Android security applications and database-backed mobile apps.",
+        "Grew from full-stack development into security, cloud and platform engineering.",
+      ],
+      tags: ["Django", "Flask", "Android", "MySQL", "Full-Stack"],
+    },
+    {
+      role: "Software Engineer · Early Career",
+      company: "Xynapse Sdn Bhd ",
+      date: "2007 — 2015",
+      location: "Multiple · APAC / UK",
+      bullets: [
+        "Deployed e-commerce platforms across Django, Flask, Ruby on Rails, WordPress and Joomla.",
+        "Built Android security applications and database-backed mobile apps.",
+        "Grew from full-stack development into security, cloud and platform engineering.",
+      ],
+      tags: ["Django", "Flask", "Android", "MySQL", "Full-Stack"],
+    },
+        {
+      role: "Freelance Software Engineer · Early Career",
+      company: "Self Employed  ",
+      date: "2010 — 2020",
       location: "Multiple · APAC / UK",
       bullets: [
         "Deployed e-commerce platforms across Django, Flask, Ruby on Rails, WordPress and Joomla.",
