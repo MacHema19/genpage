@@ -143,7 +143,7 @@ window.PortfolioData = {
      
      "Owned SLA/KPI setup, governance, and service reporting, consistently achieving green SLA performance across managed infrastructure services. Drove vendor coordination, stakeholder reporting, and escalation governance, improving accountability, visibility, and cross-team responsiveness during critical incidents",
       ],
-      tags: ["BMC Remedy", "Jira", "Nagios", "SolarWind", "Documentations"],
+      tags: ["BMC Remedy", "Jira",,"Graphana", "SolarWind", "Documentations"],
     },
   ],
 
@@ -168,7 +168,7 @@ window.PortfolioData = {
     { name: "CISSP", issuer: "ISC²", abbr: "CISSP" },
     { name: "CCNA", issuer: "Cisco", abbr: "CCNA" },
     { name: "Certified Technologist (Ts.)", issuer: "MBOT Malaysia", abbr: "Ts." },
-    { name: "Lean Six Sigma — Black Belt", issuer: "Process Excellence", abbr: "LSS" },
+    { name: "Lean Six Sigma — Black Belt", issuer: "International Association of Certified Lean Six Sigma Professionals (IASSC)", abbr: "CLSSB" },
     { name: "ACS Certified Software Engineer", issuer: "Australian Computer Society", abbr: "CSE" },
     { name: "TOGAF 10", issuer: "The Open Group", abbr: "TOG", pending: true },
   ],
