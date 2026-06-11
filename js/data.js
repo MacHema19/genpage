@@ -152,7 +152,7 @@ window.PortfolioData = {
   education: [
     {
       degree: "Master of Business Administration (MBA)",
-      school: "Staffordshire University, United Kingdom",
+      school: "University of Wales Saint Trinity David, United Kingdom",
       meta: "POSTGRADUATE · BUSINESS - 2021",
       note: "Strategic leadership, operations and technology management.",
     },
