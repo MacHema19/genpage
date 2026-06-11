@@ -153,7 +153,7 @@ window.PortfolioData = {
     {
       degree: "Master of Business Administration (MBA)",
       school: "Staffordshire University, United Kingdom",
-      meta: "POSTGRADUATE · BUSINESS",
+      meta: "POSTGRADUATE · BUSINESS - 2021",
       note: "Strategic leadership, operations and technology management.",
     },
     {
