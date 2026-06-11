@@ -57,7 +57,7 @@ window.PortfolioData = {
   //    site and SA deck. Edit freely; achievements draw from your summary.
   experience: [
     {
-      role: "Solution Architect / VP, IT Deployment Governance Lead",
+      role: "VP, IT Deployment Governance Lead",
       company: "AXA",
       date: "June 2023 — Present",
       location: "Insurance · APAC / Global",
@@ -66,7 +66,7 @@ window.PortfolioData = {
         "Drive cloud transformation and cloud-native platform controls aligned to operational risk and audit requirements.",
         "Establish DevSecOps practices, release governance and audit-ready evidence across delivery teams.",
       ],
-      tags: ["AWS", "Azure", "DevSecOps", "Governance", "Risk Controls", "Dynatrace", "AWS Glue", "AWS Lambda", "Azure Functions"
+      tags: ["AWS", "Azure", "DevSecOps", "Governance", "Risk Controls", "Dynatrace", "AWS Glue", "AWS Lambda", "Azure Functions", "Policy-as-code", "Compliance Automation", "Audit Trail", "Operational Risk Management", "ITSM", "ITIL", "Lean Six Sigma", "CISSP", "CCNA", "TOGAF", "Prometheus", "Grafana", "Splunk", "Python", "Bash", "CI/CD", "Kubernetes", "Terraform", "Linux", "Windows Server", "MySQL", "PostgreSQL", "MongoDB"
 
       ],
     },
@@ -97,7 +97,7 @@ window.PortfolioData = {
     {
       role: "Software Engineer · Early Career",
       company: "Infoconnect Sdn Bhd ",
-      date: "2007 — 2015",
+      date: "Oct 2016 — April 2017",
       location: "Multiple · APAC / UK",
       bullets: [
         "Deployed e-commerce platforms across Django, Flask, Ruby on Rails, WordPress and Joomla.",
@@ -107,9 +107,9 @@ window.PortfolioData = {
       tags: ["Django", "Flask", "Android", "MySQL", "Full-Stack"],
     },
     {
-      role: "Software Engineer · Early Career",
+      role: "Software Engineer · Internship",
       company: "Xynapse Sdn Bhd ",
-      date: "2007 — 2015",
+      date: "Aug 2015 - Oct 2015 ",
       location: "Multiple · APAC / UK",
       bullets: [
         "Deployed e-commerce platforms across Django, Flask, Ruby on Rails, WordPress and Joomla.",
@@ -118,7 +118,7 @@ window.PortfolioData = {
       ],
       tags: ["Django", "Flask", "Android", "MySQL", "Full-Stack"],
     },
-        {
+      {
       role: "Freelance Software Engineer · Early Career",
       company: "Self Employed  ",
       date: "2010 — 2020",
@@ -130,7 +130,24 @@ window.PortfolioData = {
       ],
       tags: ["Django", "Flask", "Android", "MySQL", "Full-Stack"],
     },
+    {
+      role: "Critical Major Incident Manager (MIM) ",
+      company: "CSC  ",
+      date: "2010 — 2020",
+      location: "Multiple · APAC / UK",
+      bullets: [
+     
+        "Managed five engineering teams across network, network security, Wintel, systems administration, and technical support, acting as the central coordination point across infrastructure domains in a multinational enterprise environment. Led Major Incident Management (MIM) across large enterprise clients including Eaton and Maybank, driving incident coordination, escalation, communication, and timely resolution to minimize business impact",
+     
+     "Worked closely with banking client technical persons-in-charge, client stakeholders, and internal delivery teams to manage service expectations, operational issues, and infrastructure delivery performance. Partnered with Problem Managers and Change Managers, conducting RCA/ROC reviews, post-incident follow-up, and service improvement actions to reduce recurring issues and strengthen operational stability",
+     
+     "Owned SLA/KPI setup, governance, and service reporting, consistently achieving green SLA performance across managed infrastructure services. Drove vendor coordination, stakeholder reporting, and escalation governance, improving accountability, visibility, and cross-team responsiveness during critical incidents",
+      ],
+      tags: ["BMC Remedy", "Jira", "Nagios", "SolarWind", "Documentations"],
+    },
   ],
+
+
 
   education: [
     {
