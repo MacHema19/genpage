@@ -1,485 +1,189 @@
-/* ============================================================
-   Vanilla renderer + interactions (no React / no Babel)
-   ============================================================ */
 (function () {
+  "use strict";
   const C = window.CONFIG;
   const D = window.PortfolioData;
-  const wa = (msg) => "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(msg);
-  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const root = document.getElementById("root");
+  const icon = (name) => window.svgIcon(name);
+  const brand = (name) => window.svgBrand(name);
+  const wa = (message) => `https://wa.me/${C.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  const external = 'target="_blank" rel="noopener noreferrer"';
+  const list = (items) => `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  const portfolioNavItems = [
+    ["Leadership Experience", "experience"],
+    ["Transformation Case Studies", "case-studies"],
+    ["Advisory & Entrepreneurship", "advisory"]
+  ];
+  const serviceNavItems = D.services.map((service) => [service.title, service.id]);
+  const navItems = [
+    ["Home", "home"], ["Executive Profile", "profile"], ...portfolioNavItems,
+    ...serviceNavItems, ["Insights", "insights"], ["Credentials", "credentials"], ["Contact", "contact"]
+  ];
 
-  /* ---------------- NAV ---------------- */
-  function navHTML() {
-    const links = [["About", "about"], ["Experience", "experience"], ["Education", "education"], ["Skills", "skills"], ["Projects", "projects"], ["Contact", "contact"]];
-    return `
-    <nav class="nav" id="nav">
-      <div class="nav-inner">
-        <a href="#home" class="nav-brand"><span class="mark">${C.initials}</span>Hema Darshini</a>
-        <div class="nav-links">${links.map(([l, id]) => `<a href="#${id}" data-spy="${id}">${l}</a>`).join("")}</div>
-        <a class="nav-cta" href="${wa("Hi Hema, I'd like to connect about a role.")}" target="_blank" rel="noopener">${svgBrand("whatsapp")} Hire Me</a>
-      </div>
-    </nav>`;
-  }
-
-  /* ---------------- HERO ---------------- */
-  function heroHTML() {
-    const d = D.hero;
-    return `
-    <header class="hero" id="home">
-      <div class="hero-bg"><div class="hero-grid-bg"></div><div class="glow g1"></div><div class="glow g2"></div></div>
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <div class="avail"><span class="dot"></span>${d.availability}</div>
-          <h1>
-            <span class="reveal-word"><span style="animation-delay:.05s">${d.greeting}</span></span>
-            <span class="reveal-word"><span class="accent" style="animation-delay:.18s">${d.nameLines[0]}</span></span>
-            <span class="reveal-word"><span class="accent" style="animation-delay:.30s">${d.nameLines[1]}</span></span><span class="hon">${d.honorific}</span>
-          </h1>
-          <p class="role">${d.role}</p>
-          <p class="lede">${d.lede}</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="${C.resumeUrl}" target="_blank" rel="noopener">${svgIcon("download")} Download CV</a>
-            <a class="btn btn-ghost" href="${C.linkedin}" target="_blank" rel="noopener">${svgBrand("linkedin")} LinkedIn</a>
-            <a class="btn btn-wa" href="${wa("Hi Hema, I found your portfolio and would like to connect.")}" target="_blank" rel="noopener">${svgBrand("whatsapp")} WhatsApp</a>
-          </div>
-          <div class="hero-socials">
-            <a href="${C.github}" target="_blank" rel="noopener" aria-label="GitHub">${svgBrand("github")}</a>
-            <a href="${C.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">${svgBrand("linkedin")}</a>
-            <a href="mailto:${C.email}" aria-label="Email">${svgIcon("mail")}</a>
-          </div>
+  root.innerHTML = `
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header" id="site-header">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="#home" aria-label="Hema Darshini Selvaraju, home"><span>${C.initials}</span><strong>Hema Darshini</strong></a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links"><span class="sr-only">Toggle navigation</span><i></i><i></i><i></i></button>
+        <div class="nav-links" id="nav-links">
+          <a href="#home" data-section="home">Home</a>
+          <a href="#profile" data-section="profile">Executive Profile</a>
+          <details class="nav-group" id="portfolio-menu">
+            <summary>Executive Portfolio <span aria-hidden="true">⌄</span></summary>
+            <div class="nav-submenu">${portfolioNavItems.map(([label, id]) => `<a href="#${id}" data-section="${id}">${label}</a>`).join("")}</div>
+          </details>
+          <details class="nav-group" id="services-menu">
+            <summary>Services <span aria-hidden="true">⌄</span></summary>
+            <div class="nav-submenu service-menu">${serviceNavItems.map(([label, id]) => `<a href="#${id}" data-section="${id}">${label}</a>`).join("")}</div>
+          </details>
+          <a href="#insights" data-section="insights">Insights</a>
+          <a href="#credentials" data-section="credentials">Credentials</a>
+          <a href="#contact" data-section="contact">Contact</a>
         </div>
-        <div class="identity">
-          <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-          <div class="core photo"><img src="assets/hema.png" alt="${esc(C.name)}"></div>
-          ${d.chips.map((c, i) => `<div class="chip c${i + 1}"><span class="pip"></span>${c}</div>`).join("")}
-        </div>
-      </div>
-    </header>`;
-  }
-
-  /* ---------------- SUMMARY + STATS ---------------- */
-  function summaryHTML() {
-    const d = D.summary;
-    return `
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Professional Summary</div>
-          <h2>Two decades securing the platforms enterprises run on.</h2>
-        </div>
-        <p class="summary-lede reveal" data-delay="1">${d.lede}</p>
-        <div class="summary-body reveal" data-delay="2">${d.paragraphs.map((p) => `<p>${p}</p>`).join("")}</div>
-        <div class="stats reveal" data-delay="1">
-          ${D.stats.map((s) => `
-            <div class="stat">
-              <div class="num"><span class="count" data-to="${s.num}">0</span><span class="suffix">${s.suffix}</span></div>
-              <div class="label">${s.label}</div>
-              <div class="sub">${s.sub}</div>
-            </div>`).join("")}
-        </div>
-      </div>
-    </section>`;
-  }
-
-  /* ---------------- TIMELINE ---------------- */
-  function timelineHTML() {
-    return `
-    <section class="section" id="experience" style="background:var(--bg-2)">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Career Timeline</div>
-          <h2>Where I've delivered.</h2>
-          <p>Nearly twenty years across insurance, shared services, cybersecurity and enterprise platforms — three continents, regulated every step.</p>
-        </div>
-        <div class="timeline" id="timeline">
-          <div class="progress" id="tl-progress"></div>
-          ${D.experience.map((it, i) => `
-            <div class="tl-item reveal" data-delay="${Math.min(i, 3)}">
-              <div class="tl-node"></div>
-              <div class="tl-card">
-                <div class="tl-top"><span class="role">${it.role}</span><span class="co">· ${it.company}</span><span class="tl-date">${it.date}</span></div>
-                <div class="tl-loc">${it.location}</div>
-                <ul>${it.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>
-                <div class="tl-tags">${it.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-              </div>
-            </div>`).join("")}
-        </div>
-      </div>
-    </section>`;
-  }
-
-  /* ---------------- EDUCATION ---------------- */
-  function educationHTML() {
-    return `
-    <section class="section" id="education">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Education & Credentials</div>
-          <h2>Qualified, certified, accountable.</h2>
-        </div>
-        <div class="edu-grid">
-          <div class="edu-col reveal">
-            ${D.education.map((e) => `
-              <div class="edu-card">
-                <div class="ico">${svgIcon("cap")}</div>
-                <div>
-                  <h4>${e.degree}</h4>
-                  <div class="meta">${e.meta}</div>
-                  <p>${e.school}</p>
-                  <p style="color:var(--ink-faint);margin-top:4px">${e.note}</p>
-                </div>
-              </div>`).join("")}
-          </div>
-          <div class="reveal" data-delay="1">
-            <div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px">Certifications Wall</div>
-            <div class="cert-wall">
-              ${D.certifications.map((c) => `
-                <div class="cert${c.pending ? " pending" : ""}">
-                  <span class="badge">${c.abbr}</span>
-                  <div><div class="nm">${c.name}</div><div class="iss">${c.issuer}</div></div>
-                  ${c.pending ? '<span class="pend-tag">In Progress</span>' : ""}
-                </div>`).join("")}
+      </nav>
+    </header>
+    <main id="main-content">
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">${D.hero.eyebrow}</p>
+            <p class="person-name">${C.name}</p>
+            <h1>${D.hero.headline}</h1>
+            <p class="hero-title">${D.hero.title}</p>
+            <p class="lede">${D.hero.summary}</p>
+            <p class="availability"><span aria-hidden="true"></span>${D.hero.availability}</p>
+            <div class="actions">
+              <a class="button primary" href="#profile">View Executive Profile</a>
+              <a class="button secondary resume-link" href="${C.resumeUrl}" download>Download Executive Résumé</a>
             </div>
+            <a class="text-link" href="#case-studies">Explore Transformation Case Studies ${icon("arrow")}</a>
           </div>
+          <aside class="portrait-panel reveal" aria-label="Executive portrait and leadership highlights">
+            <div class="portrait-wrap"><img src="assets/hema-professional-office.jpg" width="1122" height="1402" alt="Professional office portrait of Hema Darshini Selvaraju" fetchpriority="high"></div>
+            <div class="floating-label label-cloud" data-depth="16"><i aria-hidden="true"></i>AWS · Azure · GCP</div>
+            <div class="floating-label label-devsecops" data-depth="22"><i aria-hidden="true"></i>DevSecOps</div>
+            <div class="floating-label label-security" data-depth="18"><i aria-hidden="true"></i>CISSP · CCNA</div>
+            <div class="highlight-card"><p>Leadership focus</p><strong>Strategy · Transformation · Governance · Resilience</strong><span>Connecting technology decisions to enterprise outcomes.</span></div>
+          </aside>
         </div>
-      </div>
-    </section>`;
-  }
-
-  /* ---------------- SKILLS ---------------- */
-  function skillsHTML() {
-    return `
-    <section class="section" id="skills" style="background:var(--bg-2)">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Tech Stack & Skills</div>
-          <h2>A full-spectrum platform skillset.</h2>
-          <p>From cloud architecture to deployment governance — depth where it counts, breadth where it matters.</p>
+      </section>
+      <section class="section" id="profile">
+        <div class="container">
+          <div class="section-heading reveal"><p class="eyebrow">Executive Profile</p><h2>Technology depth. Enterprise perspective.</h2></div>
+          <div class="profile-copy reveal">${D.executiveProfile.paragraphs.map((p) => `<p>${p}</p>`).join("")}</div>
+          <div class="pillar-grid">${D.leadershipPillars.map((p, i) => `<article class="card pillar reveal"><span>0${i + 1}</span><h3>${p.title}</h3><p>${p.text}</p></article>`).join("")}</div>
+          <div class="metric-grid">${D.impactMetrics.map((m) => `<div class="metric reveal"><strong>${m.value}</strong><span>${m.label}</span></div>`).join("")}</div>
         </div>
-        <div class="skills-grid">
-          ${D.skills.map((cat, i) => `
-            <div class="skill-cat reveal" data-delay="${Math.min(i, 3)}">
-              <div class="cat-head"><div class="ico">${svgIcon(cat.icon)}</div><h4>${cat.category}</h4></div>
-              ${cat.items.map((s) => `
-                <div class="skill-row">
-                  <span class="nm">${s.name}</span>
-                  <span class="skill-meter">${[1, 2, 3, 4, 5].map((p) => `<span class="pip${p <= s.score ? " on" : ""}"></span>`).join("")}</span>
-                  <span class="lvl">${s.level}</span>
-                </div>`).join("")}
-            </div>`).join("")}
+      </section>
+      <section class="section muted" id="experience">
+        <div class="container"><div class="section-heading reveal"><p class="eyebrow">Leadership Experience</p><h2>Leading change across regulated and complex environments.</h2></div>
+          <div class="timeline">${D.experience.map((job) => `<article class="experience-card reveal"><div class="experience-head"><div><p class="scope">${job.scope}</p><h3>${job.title}</h3><p class="company">${job.company}</p></div><p class="dates">${job.dates}</p></div><p class="context">${job.context}</p><p class="statement">${job.statement}</p><h4>Selected leadership impact</h4>${list(job.impact)}<div class="tags">${job.competencies.map((c) => `<span>${c}</span>`).join("")}</div></article>`).join("")}</div>
         </div>
-      </div>
-    </section>`;
-  }
-
-  /* ---------------- ARCHITECTURE ---------------- */
-  function architectureHTML() {
-    return `
-    <section class="section" id="architecture">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Architecture Showcase</div>
-          <h2>Blueprints, not just buzzwords.</h2>
-          <p>Sanitised reference architectures from real enterprise engagements — the differentiator for solution-architect work.</p>
-        </div>
-        <div class="arch-grid">
-          ${D.architecture.map((a, i) => `
-            <div class="arch-card reveal" data-delay="${i}">
-              <div class="arch-diagram">
-                <div class="ph-stripe"></div>
-                <span class="badge-tag">${a.tag}</span>
-                <div class="node n1"></div><div class="node n2"></div><div class="node n3"></div>
-                <div class="edge" style="left:92px;width:calc(100% - 184px)"></div>
-                <span class="ph-label">diagram placeholder — drop sanitised architecture here</span>
-              </div>
-              <div class="arch-body">
-                <h4>${a.title}</h4>
-                <p>${a.desc}</p>
-                <div class="arch-tags"><span class="tag">${a.label}</span>${a.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-              </div>
-            </div>`).join("")}
-        </div>
-      </div>
-    </section>`;
-  }
-
-  /* ---------------- PROJECTS ---------------- */
-  function projectsHTML() {
-    return `
-    <section class="section" id="projects" style="background:var(--bg-2)">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Projects Portfolio</div>
-          <h2>Selected work.</h2>
-          <p>Security tooling, automation and cloud blueprints. Filter by domain, then open any card for the full story.</p>
-        </div>
-        <div class="proj-filters reveal" data-delay="1" id="proj-filters">
-          ${D.projectCategories.map((c, i) => `<button class="filter-btn${i === 0 ? " active" : ""}" data-filter="${c}">${c}</button>`).join("")}
-        </div>
-        <div class="proj-grid" id="proj-grid"></div>
-      </div>
-    </section>`;
-  }
-
-  function projectCardHTML(p, idx) {
-    return `
-      <article class="proj-card reveal" data-idx="${idx}">
-        <div class="proj-thumb">
-          ${p.img ? `<img src="${p.img}" alt="${esc(p.title)}" loading="lazy">` : '<div class="ph"></div>'}
-          <span class="cat-pill">${p.category}</span>
-          ${p.img ? "" : '<span class="ph-tag">project image</span>'}
-        </div>
-        <div class="proj-info">
-          <h4>${p.title}</h4>
-          <p>${p.desc}</p>
-          <div class="proj-meta"><span class="yr">${p.year} · ${p.client}</span><span class="view">View ${svgIcon("arrowUpRight")}</span></div>
-        </div>
-      </article>`;
-  }
-
-  function modalHTML() {
-    return `
-    <div class="modal-overlay" id="modal-overlay">
-      <div class="modal" id="modal"></div>
-    </div>`;
-  }
-
-  /* ---------------- CONTACT ---------------- */
-  function contactHTML() {
-    return `
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head reveal" style="max-width:620px">
-          <div class="eyebrow">Get In Touch</div>
-          <h2>Let's discuss your next platform.</h2>
-          <p>Hiring for a senior cloud, security or platform role? Reach me directly, or send a note below.</p>
-        </div>
-        <div class="contact-wrap">
-          <div class="contact-left reveal">
-            <a class="contact-channel" href="${wa("Hi Hema, I'd like to connect about an opportunity.")}" target="_blank" rel="noopener">
-              <span class="ico wa">${svgBrand("whatsapp")}</span>
-              <div><div class="k">WhatsApp / Call / SMS</div><div class="v">+60 12 291 9199</div></div>
-            </a>
-            <a class="contact-channel" href="mailto:${C.email}">
-              <span class="ico mail">${svgIcon("mail")}</span>
-              <div><div class="k">Email</div><div class="v">${C.email}</div></div>
-            </a>
-            <a class="contact-channel" href="${C.linkedin}" target="_blank" rel="noopener">
-              <span class="ico li">${svgBrand("linkedin")}</span>
-              <div><div class="k">LinkedIn</div><div class="v">Connect professionally</div></div>
-            </a>
-            <div class="contact-channel" style="cursor:default">
-              <span class="ico" style="background:var(--ink)">${svgIcon("pin")}</span>
-              <div><div class="k">Based in</div><div class="v">Malaysia · Open to Remote / Relocation</div></div>
-            </div>
-          </div>
-          <form class="contact-form reveal" data-delay="1" id="contact-form" novalidate>
-            <div class="form-row">
-              <div class="field" data-field="first"><label>First Name</label><input name="first" placeholder="Jane"><span class="msg"></span></div>
-              <div class="field"><label>Last Name</label><input name="last" placeholder="Doe"></div>
-            </div>
-            <div class="field" data-field="email"><label>Email Address</label><input name="email" placeholder="jane@company.com"><span class="msg"></span></div>
-            <div class="field"><label>Phone Number</label><input name="phone" placeholder="Optional"></div>
-            <div class="field" data-field="message"><label>Your Message</label><textarea name="message" rows="4" placeholder="Tell me about the role or project…"></textarea><span class="msg"></span></div>
-            <div class="form-submit">
-              <button type="submit" class="btn btn-primary" id="send-btn">${svgIcon("mail")} Send Message</button>
-              <span class="form-success" id="form-success">${svgIcon("check")} Thanks — your email client is opening.</span>
-              <span class="form-note" id="form-note">Replies within 1–2 business days.</span>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>`;
-  }
-
-  /* ---------------- FOOTER + FLOAT ---------------- */
-  function footerHTML() {
-    const yr = new Date().getFullYear();
-    return `
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <h3>Hema Darshini Selvaraju<span style="color:var(--accent-bright)"> Ts.</span></h3>
-            <p>Senior Software Engineer · DevSecOps · Cloud Platform & Security Governance. Nearly 20 years across three continents.</p>
-          </div>
-          <div class="footer-nav">
-            <div class="footer-col"><h5>Explore</h5><a href="#about">Summary</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Projects</a></div>
-            <div class="footer-col"><h5>Connect</h5><a href="${C.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a href="${C.github}" target="_blank" rel="noopener">GitHub</a><a href="mailto:${C.email}">Email</a><a href="${wa("Hi Hema")}" target="_blank" rel="noopener">WhatsApp</a></div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <span>© ${yr} Hema Darshini Selvaraju. All rights reserved.</span>
-          <div class="footer-social">
-            <a href="${C.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">${svgBrand("linkedin")}</a>
-            <a href="${C.github}" target="_blank" rel="noopener" aria-label="GitHub">${svgBrand("github")}</a>
-            <a href="${wa("Hi Hema")}" target="_blank" rel="noopener" aria-label="WhatsApp">${svgBrand("whatsapp")}</a>
-          </div>
-          <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
-        </div>
-      </div>
-    </footer>
-    <a class="wa-float" href="${wa("Hi Hema, I found your portfolio and would like to connect.")}" target="_blank" rel="noopener" aria-label="WhatsApp">
-      <span class="wa-ico">${svgBrand("whatsapp")}</span><span class="wa-txt">Chat on WhatsApp</span>
+      </section>
+      <section class="section" id="capabilities"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Executive Capability Matrix</p><h2>Leadership capability grounded in delivery.</h2></div><div class="capability-grid">${D.capabilities.map((c) => `<article class="card reveal"><h3>${c.title}</h3>${list(c.items)}</article>`).join("")}</div></div></section>
+      <section class="section navy" id="case-studies"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Transformation Case Studies</p><h2>Selected enterprise transformation themes.</h2><p>Sanitised examples focused on the challenge, leadership action and operational outcome.</p></div><div class="case-grid">${D.caseStudies.map((c, i) => `<article class="case-card reveal"><span class="case-number">0${i + 1}</span><h3>${c.title}</h3><h4>Business challenge</h4><p>${c.challenge}</p><h4>Leadership actions</h4>${list(c.actions)}<div class="outcome"><h4>Outcome</h4><p>${c.outcome}</p></div><p class="case-cap">${c.capabilities}</p></article>`).join("")}</div></div></section>
+      <section class="section" id="advisory"><div class="container advisory-grid"><div class="section-heading reveal"><p class="eyebrow">Advisory and Entrepreneurship</p><h2>${D.advisory.title}</h2><p>${D.advisory.text}</p>${C.consultancyUrl ? `<a class="text-link" href="${C.consultancyUrl}" ${external}>Visit HDS Consultancy ${icon("arrowUpRight")}</a>` : ""}<small>${D.advisory.note}</small></div><div class="advisory-list reveal">${D.advisory.items.map((x) => `<span>${icon("check")}${x}</span>`).join("")}</div></div></section>
+      <section class="section services-section" id="services"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Professional Services</p><h2>Technology expertise shaped around your organisation’s needs.</h2><p>Focused advisory, delivery and capability-building services for employers, businesses and professionals.</p></div><div class="service-grid">${D.services.map((service, index) => `<article class="service-card reveal" id="${service.id}"><span class="service-number">0${index + 1}</span><h3>${service.title}</h3><p>${service.summary}</p><small>${service.audience}</small><a class="button secondary service-enquiry" href="#contact" data-service-choice="${service.title}">Enquire about this service ${icon("arrow")}</a></article>`).join("")}</div></div></section>
+      <section class="section muted" id="insights"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Insights</p><h2>Perspectives on technology leadership.</h2></div><div class="insight-grid">${D.insights.map((x) => `<article class="insight-card reveal"><div><span>${x.category}</span><span>${x.readTime}</span></div><h3>${x.title}</h3><p>${x.summary}</p><strong>${x.status}</strong></article>`).join("")}</div></div></section>
+      <section class="section" id="credentials"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Credentials and Professional Development</p><h2>Business leadership and technology foundations.</h2></div><div class="credentials-grid"><div>${D.education.map((e) => `<article class="education-card reveal"><span>${icon("cap")}</span><div><h3>${e.degree}</h3><p>${e.institution}</p><small>${e.detail}</small></div></article>`).join("")}</div><div class="credential-list">${D.credentials.map((c) => `<article class="credential reveal"><div><h3>${c.name}</h3><p>${c.issuer}</p></div><span>${c.status}</span></article>`).join("")}</div></div></div></section>
+      <section class="section contact" id="contact"><div class="container contact-grid"><div class="reveal"><p class="eyebrow">Contact</p><h2>${D.contact.headline}</h2><p>${D.contact.text}</p><div class="contact-actions"><a class="button primary" href="${C.linkedinUrl}" ${external}>${brand("linkedin")} Connect on LinkedIn</a><a class="button secondary" href="mailto:${C.professionalEmail}">${icon("mail")} Email Hema</a><a class="button secondary resume-link" href="${C.resumeUrl}" download>${icon("download")} Download Executive Résumé</a><a class="button secondary" href="${wa("Hello Hema, I would like to discuss a technology leadership or advisory opportunity.")}" ${external}>${brand("whatsapp")} WhatsApp</a></div></div>
+        <form class="contact-form reveal" id="contact-form" novalidate><h3>Employer and service enquiry</h3><label for="contact-service">I’m interested in</label><select id="contact-service" name="service"><option value="Leadership opportunity">Leadership opportunity</option>${D.services.map((service) => `<option value="${service.title}">${service.title}</option>`).join("")}</select><label for="contact-name">Name</label><input id="contact-name" name="name" autocomplete="name" required><span class="error" id="name-error"></span><label for="contact-company">Company</label><input id="contact-company" name="company" autocomplete="organization"><label for="contact-email">Work email</label><input id="contact-email" name="email" type="email" autocomplete="email" required><span class="error" id="email-error"></span><label for="contact-message">How can Hema help?</label><textarea id="contact-message" name="message" rows="5" required></textarea><span class="error" id="message-error"></span><button class="button primary" type="submit">Prepare enquiry</button><p class="form-note" id="form-note">This form opens your email application with the enquiry prepared; it does not send silently.</p></form>
+      </div></section>
+    </main>
+    <footer><div class="container footer-grid"><div><strong>${C.name}</strong><p>Technology strategy, enterprise transformation and operational resilience.</p></div><div class="footer-links"><a href="${C.linkedinUrl}" ${external}>LinkedIn</a><a href="${C.githubUrl}" ${external}>Technical profile</a><a href="mailto:${C.professionalEmail}">Email</a></div><p>© ${new Date().getFullYear()} ${C.name}</p></div></footer>
+    <a class="whatsapp-float" href="${wa("Hello Hema, I visited your executive portfolio and would like to connect.")}" ${external} aria-label="Send Hema a message on WhatsApp">
+      ${brand("whatsapp")}<span>Message Hema</span>
     </a>`;
-  }
 
-  /* ================= RENDER ================= */
-  document.getElementById("root").innerHTML =
-    navHTML() + heroHTML() +
-    `<main>` + summaryHTML() + timelineHTML() + educationHTML() + skillsHTML() + architectureHTML() + projectsHTML() + contactHTML() + `</main>` +
-    footerHTML() + modalHTML();
+  document.querySelector('link[rel="canonical"]').href = C.siteUrl;
+  document.querySelector('meta[property="og:url"]').content = C.siteUrl;
+  document.querySelector('meta[property="og:image"]').content = `${C.siteUrl}/assets/hema-professional-office.jpg`;
+  document.getElementById("person-schema").textContent = JSON.stringify({
+    "@context": "https://schema.org", "@type": "Person", name: C.name,
+    jobTitle: "Technology and Enterprise Transformation Leader", url: C.siteUrl,
+    sameAs: [C.linkedinUrl, C.githubUrl],
+    alumniOf: [{ "@type": "CollegeOrUniversity", name: "University of Wales Trinity Saint David" }, { "@type": "CollegeOrUniversity", name: "Staffordshire University" }],
+    knowsAbout: ["Technology strategy", "Enterprise transformation", "Cloud modernisation", "Cybersecurity", "IT governance", "Enterprise architecture", "IT service management"]
+  });
 
-  /* ================= INTERACTIONS ================= */
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const menuButton = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const portfolioMenu = document.getElementById("portfolio-menu");
+  const servicesMenu = document.getElementById("services-menu");
+  const closeMenu = () => { navLinks.classList.remove("open"); menuButton.setAttribute("aria-expanded", "false"); portfolioMenu.open = false; servicesMenu.open = false; };
+  menuButton.addEventListener("click", () => { const open = navLinks.classList.toggle("open"); menuButton.setAttribute("aria-expanded", String(open)); });
+  navLinks.addEventListener("click", (event) => { if (event.target.closest("a")) closeMenu(); });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMenu(); });
+  [portfolioMenu, servicesMenu].forEach((menu) => menu.addEventListener("toggle", () => {
+    if (!menu.open) return;
+    [portfolioMenu, servicesMenu].forEach((other) => { if (other !== menu) other.open = false; });
+  }));
 
-  // Scroll reveal
-  function bindReveal() {
-    const els = document.querySelectorAll(".reveal");
-    if (reduceMotion || !("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("in")); return; }
-    const io = new IntersectionObserver((ents) => {
-      ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
-    els.forEach((e) => io.observe(e));
-  }
+  const sections = navItems.map(([, id]) => document.getElementById(id)).filter(Boolean);
+  const sectionLinks = [...document.querySelectorAll("[data-section]")];
+  const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    sectionLinks.forEach((link) => { const active = link.dataset.section === entry.target.id; link.classList.toggle("active", active); if (active) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current"); });
+  }), { rootMargin: "-25% 0px -65%", threshold: 0 });
+  sections.forEach((section) => observer.observe(section));
 
-  // Count-up
-  function bindCounters() {
-    const nums = document.querySelectorAll(".count");
-    if (reduceMotion) { nums.forEach((n) => n.textContent = n.dataset.to); return; }
-    const io = new IntersectionObserver((ents) => {
-      ents.forEach((en) => {
-        if (!en.isIntersecting) return;
-        const el = en.target, end = +el.dataset.to, t0 = performance.now(), dur = 1400;
-        const tick = (now) => {
-          const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(e * end);
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        io.unobserve(el);
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reveals = document.querySelectorAll(".reveal");
+  if (reduceMotion || !("IntersectionObserver" in window)) reveals.forEach((el) => el.classList.add("visible"));
+  else { const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("visible"); revealObserver.unobserve(entry.target); } }), { threshold: 0.08 }); reveals.forEach((el) => revealObserver.observe(el)); }
+
+  // Subtle hero depth: capability labels respond to pointer movement while
+  // the background shifts gently with scroll. Disabled for reduced motion.
+  if (!reduceMotion) {
+    const hero = document.querySelector(".hero");
+    const portrait = document.querySelector(".portrait-panel");
+    const floatingLabels = portrait.querySelectorAll("[data-depth]");
+    portrait.addEventListener("pointermove", (event) => {
+      const bounds = portrait.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      portrait.style.setProperty("--portrait-x", `${x * 10}px`);
+      portrait.style.setProperty("--portrait-y", `${y * 10}px`);
+      floatingLabels.forEach((label) => {
+        const depth = Number(label.dataset.depth);
+        label.style.setProperty("--parallax-x", `${x * depth}px`);
+        label.style.setProperty("--parallax-y", `${y * depth}px`);
       });
-    }, { threshold: 0.5 });
-    nums.forEach((n) => io.observe(n));
-  }
-
-  // Nav scroll state + spy + timeline progress (single scroll handler)
-  function bindScroll() {
-    const nav = document.getElementById("nav");
-    const spies = [...document.querySelectorAll("[data-spy]")];
-    const secs = ["home", "about", "experience", "education", "skills", "architecture", "projects", "contact"];
-    const tl = document.getElementById("timeline");
-    const tlProg = document.getElementById("tl-progress");
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      nav.classList.toggle("scrolled", window.scrollY > 20);
-      let cur = "home";
-      for (const id of secs) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= 140) cur = id; }
-      spies.forEach((a) => a.classList.toggle("active", a.dataset.spy === cur));
-      if (tl) {
-        const r = tl.getBoundingClientRect(), vh = innerHeight;
-        const seen = Math.min(Math.max(vh * 0.55 - r.top, 0), r.height);
-        tlProg.style.height = (seen / r.height) * 100 + "%";
-        const nodes = tl.querySelectorAll(".tl-item");
-        nodes.forEach((n) => n.classList.toggle("lit", n.querySelector(".tl-node").getBoundingClientRect().top < vh * 0.6));
-      }
-    };
-    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    update();
-  }
-
-  // Projects filter + modal
-  function bindProjects() {
-    const grid = document.getElementById("proj-grid");
-    const filters = document.getElementById("proj-filters");
-    let current = "All";
-    const render = () => {
-      const list = D.projects.map((p, i) => ({ p, i })).filter(({ p }) => current === "All" || p.category === current);
-      grid.innerHTML = list.map(({ p, i }) => projectCardHTML(p, i)).join("");
-      grid.querySelectorAll(".proj-card").forEach((card) => {
-        card.classList.add("in");
-        card.addEventListener("click", () => openModal(+card.dataset.idx));
+    });
+    portrait.addEventListener("pointerleave", () => {
+      portrait.style.setProperty("--portrait-x", "0px");
+      portrait.style.setProperty("--portrait-y", "0px");
+      floatingLabels.forEach((label) => { label.style.setProperty("--parallax-x", "0px"); label.style.setProperty("--parallax-y", "0px"); });
+    });
+    let parallaxFrame = 0;
+    addEventListener("scroll", () => {
+      if (parallaxFrame) return;
+      parallaxFrame = requestAnimationFrame(() => {
+        const shift = Math.min(scrollY * 0.08, 44);
+        hero.style.setProperty("--scroll-shift", `${shift}px`);
+        parallaxFrame = 0;
       });
-    };
-    filters.addEventListener("click", (e) => {
-      const btn = e.target.closest(".filter-btn"); if (!btn) return;
-      current = btn.dataset.filter;
-      filters.querySelectorAll(".filter-btn").forEach((b) => b.classList.toggle("active", b === btn));
-      render();
-    });
-    render();
-
-    const overlay = document.getElementById("modal-overlay");
-    const modal = document.getElementById("modal");
-    function openModal(idx) {
-      const p = D.projects[idx];
-      modal.innerHTML = `
-        <div class="modal-hero">
-          ${p.img ? `<img src="${p.img}" alt="${esc(p.title)}">` : '<div class="ph"></div>'}
-          <button class="modal-close" id="modal-close" aria-label="Close">${svgIcon("close")}</button>
-        </div>
-        <div class="modal-body">
-          <span class="cat-pill">${p.category}</span>
-          <h3>${p.title}</h3>
-          <p class="m-desc">${p.full}</p>
-          <div class="modal-grid">
-            <div class="cell"><div class="k">Year</div><div class="v">${p.year}</div></div>
-            <div class="cell"><div class="k">Client</div><div class="v">${p.client}</div></div>
-            <div class="cell"><div class="k">Domain</div><div class="v">${p.category}</div></div>
-          </div>
-          <div class="m-outcome"><div class="k">Outcome</div><p>${p.outcome}</p></div>
-          <div class="modal-tags">${p.tech.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-          <div class="modal-actions"><a class="btn btn-ink" href="${p.link}" target="_blank" rel="noopener">${svgBrand("github")} View on GitHub</a></div>
-        </div>`;
-      overlay.classList.add("open");
-      document.body.style.overflow = "hidden";
-      modal.scrollTop = 0;
-      document.getElementById("modal-close").addEventListener("click", closeModal);
-    }
-    function closeModal() { overlay.classList.remove("open"); document.body.style.overflow = ""; }
-    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
-    addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+    }, { passive: true });
   }
 
-  // Contact form
-  function bindForm() {
-    const form = document.getElementById("contact-form");
-    const setErr = (name, msg) => {
-      const f = form.querySelector(`[data-field="${name}"]`);
-      f.classList.toggle("err", !!msg);
-      f.querySelector(".msg").textContent = msg || "";
-    };
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const v = (n) => form.elements[n].value.trim();
-      let ok = true;
-      if (!v("first")) { setErr("first", "Required"); ok = false; } else setErr("first", "");
-      if (!v("email")) { setErr("email", "Required"); ok = false; }
-      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email"))) { setErr("email", "Enter a valid email"); ok = false; }
-      else setErr("email", "");
-      if (!v("message")) { setErr("message", "Tell me a little about it"); ok = false; } else setErr("message", "");
-      if (!ok) return;
+  document.querySelectorAll(".resume-link").forEach((link) => link.addEventListener("click", async (event) => {
+    try { const response = await fetch(C.resumeUrl, { method: "HEAD" }); if (!response.ok) throw new Error(); }
+    catch { event.preventDefault(); alert("The executive résumé is being updated. Please email Hema to request the latest copy."); }
+  }));
 
-      const data = { from_name: v("first") + " " + v("last"), reply_to: v("email"), phone: v("phone"), message: v("message") };
-      const finish = () => {
-        document.getElementById("form-success").classList.add("show");
-        document.getElementById("form-note").style.display = "none";
-        form.reset();
-      };
-      const mailto = () => {
-        const subject = encodeURIComponent("Portfolio enquiry from " + data.from_name);
-        const body = encodeURIComponent("Name: " + data.from_name + "\nEmail: " + data.reply_to + "\nPhone: " + data.phone + "\n\n" + data.message);
-        window.location.href = "mailto:" + C.email + "?subject=" + subject + "&body=" + body;
-      };
-      const cfg = C.emailjs;
-      if (cfg.enabled && window.emailjs) {
-        const btn = document.getElementById("send-btn"); btn.textContent = "Sending…";
-        window.emailjs.send(cfg.serviceId, cfg.templateId, data, cfg.publicKey)
-          .then(() => { finish(); btn.innerHTML = svgIcon("mail") + " Send Message"; })
-          .catch(() => { mailto(); finish(); btn.innerHTML = svgIcon("mail") + " Send Message"; });
-      } else { mailto(); finish(); }
-    });
-  }
-
-  bindReveal(); bindCounters(); bindScroll(); bindProjects(); bindForm();
+  document.getElementById("contact-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+    const errors = { name: values.name.trim() ? "" : "Please enter your name.", email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim()) ? "" : "Please enter a valid email.", message: values.message.trim().length >= 10 ? "" : "Please enter at least 10 characters." };
+    Object.entries(errors).forEach(([key, value]) => { document.getElementById(`${key}-error`).textContent = value; document.getElementById(`contact-${key}`).setAttribute("aria-invalid", String(Boolean(value))); });
+    if (Object.values(errors).some(Boolean)) { form.querySelector('[aria-invalid="true"]').focus(); return; }
+    const subject = encodeURIComponent(`${values.service} enquiry from ${values.name.trim()}`);
+    const body = encodeURIComponent(`Service: ${values.service}\nName: ${values.name.trim()}\nCompany: ${values.company.trim()}\nEmail: ${values.email.trim()}\n\n${values.message.trim()}`);
+    document.getElementById("form-note").textContent = "Your email application is opening with the message prepared.";
+    window.location.href = `mailto:${C.professionalEmail}?subject=${subject}&body=${body}`;
+  });
+  document.querySelectorAll("[data-service-choice]").forEach((link) => link.addEventListener("click", () => {
+    document.getElementById("contact-service").value = link.dataset.serviceChoice;
+  }));
 })();
