@@ -1,7 +1,7 @@
 window.CONFIG = {
   name: "Hema Darshini Selvaraju",
   initials: "HD",
-  siteUrl: "https://hemadarshini.com",
+  siteUrl: "https://machema19.github.io",
   professionalEmail: "mshemadarshini@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/hema-darshini-selvaraju",
   githubUrl: "https://github.com/MacHema19",

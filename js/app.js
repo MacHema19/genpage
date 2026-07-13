@@ -8,6 +8,13 @@
   const wa = (message) => `https://wa.me/${C.whatsappNumber}?text=${encodeURIComponent(message)}`;
   const external = 'target="_blank" rel="noopener noreferrer"';
   const list = (items) => `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  const portraitHTML = (variant) => `<aside class="portrait-panel ${variant}-portrait reveal" aria-label="Executive portrait and leadership highlights">
+    <div class="portrait-wrap"><img src="assets/hema-professional-office.jpg" width="1122" height="1402" alt="Professional office portrait of Hema Darshini Selvaraju" fetchpriority="high"></div>
+    <div class="floating-label label-cloud" data-depth="16"><i aria-hidden="true"></i>AWS · Azure · GCP</div>
+    <div class="floating-label label-devsecops" data-depth="22"><i aria-hidden="true"></i>DevSecOps</div>
+    <div class="floating-label label-security" data-depth="18"><i aria-hidden="true"></i>CISSP · CCNA</div>
+    <div class="highlight-card"><p>Leadership focus</p><strong>Strategy · Transformation · Governance · Resilience</strong><span>Connecting technology decisions to enterprise outcomes.</span></div>
+  </aside>`;
   const portfolioNavItems = [
     ["Executive Overview", "profile"],
     ["Leadership Experience", "experience"],
@@ -50,6 +57,7 @@
             <p class="eyebrow">${D.hero.eyebrow}</p>
             <p class="person-name">${C.name}</p>
             <h1>${D.hero.headline}</h1>
+            ${portraitHTML("mobile")}
             <p class="hero-title">${D.hero.title}</p>
             <p class="lede">${D.hero.summary}</p>
             <p class="availability"><span aria-hidden="true"></span>${D.hero.availability}</p>
@@ -59,13 +67,7 @@
             </div>
             <a class="text-link" href="#case-studies">Explore Transformation Case Studies ${icon("arrow")}</a>
           </div>
-          <aside class="portrait-panel reveal" aria-label="Executive portrait and leadership highlights">
-            <div class="portrait-wrap"><img src="assets/hema-professional-office.jpg" width="1122" height="1402" alt="Professional office portrait of Hema Darshini Selvaraju" fetchpriority="high"></div>
-            <div class="floating-label label-cloud" data-depth="16"><i aria-hidden="true"></i>AWS · Azure · GCP</div>
-            <div class="floating-label label-devsecops" data-depth="22"><i aria-hidden="true"></i>DevSecOps</div>
-            <div class="floating-label label-security" data-depth="18"><i aria-hidden="true"></i>CISSP · CCNA</div>
-            <div class="highlight-card"><p>Leadership focus</p><strong>Strategy · Transformation · Governance · Resilience</strong><span>Connecting technology decisions to enterprise outcomes.</span></div>
-          </aside>
+          ${portraitHTML("desktop")}
         </div>
       </section>
       <section class="section" id="profile">
@@ -138,24 +140,25 @@
   // the background shifts gently with scroll. Disabled for reduced motion.
   if (!reduceMotion) {
     const hero = document.querySelector(".hero");
-    const portrait = document.querySelector(".portrait-panel");
-    const floatingLabels = portrait.querySelectorAll("[data-depth]");
-    portrait.addEventListener("pointermove", (event) => {
-      const bounds = portrait.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-      portrait.style.setProperty("--portrait-x", `${x * 10}px`);
-      portrait.style.setProperty("--portrait-y", `${y * 10}px`);
-      floatingLabels.forEach((label) => {
-        const depth = Number(label.dataset.depth);
-        label.style.setProperty("--parallax-x", `${x * depth}px`);
-        label.style.setProperty("--parallax-y", `${y * depth}px`);
+    document.querySelectorAll(".portrait-panel").forEach((portrait) => {
+      const floatingLabels = portrait.querySelectorAll("[data-depth]");
+      portrait.addEventListener("pointermove", (event) => {
+        const bounds = portrait.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+        portrait.style.setProperty("--portrait-x", `${x * 10}px`);
+        portrait.style.setProperty("--portrait-y", `${y * 10}px`);
+        floatingLabels.forEach((label) => {
+          const depth = Number(label.dataset.depth);
+          label.style.setProperty("--parallax-x", `${x * depth}px`);
+          label.style.setProperty("--parallax-y", `${y * depth}px`);
+        });
       });
-    });
-    portrait.addEventListener("pointerleave", () => {
-      portrait.style.setProperty("--portrait-x", "0px");
-      portrait.style.setProperty("--portrait-y", "0px");
-      floatingLabels.forEach((label) => { label.style.setProperty("--parallax-x", "0px"); label.style.setProperty("--parallax-y", "0px"); });
+      portrait.addEventListener("pointerleave", () => {
+        portrait.style.setProperty("--portrait-x", "0px");
+        portrait.style.setProperty("--portrait-y", "0px");
+        floatingLabels.forEach((label) => { label.style.setProperty("--parallax-x", "0px"); label.style.setProperty("--parallax-y", "0px"); });
+      });
     });
     let parallaxFrame = 0;
     addEventListener("scroll", () => {
