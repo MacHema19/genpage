@@ -9,13 +9,15 @@
   const external = 'target="_blank" rel="noopener noreferrer"';
   const list = (items) => `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
   const portfolioNavItems = [
+    ["Executive Overview", "profile"],
     ["Leadership Experience", "experience"],
     ["Transformation Case Studies", "case-studies"],
+    ["Selected Work on GitHub", "github-work"],
     ["Advisory & Entrepreneurship", "advisory"]
   ];
   const serviceNavItems = D.services.map((service) => [service.title, service.id]);
   const navItems = [
-    ["Home", "home"], ["Executive Profile", "profile"], ...portfolioNavItems,
+    ["Home", "home"], ...portfolioNavItems,
     ...serviceNavItems, ["Insights", "insights"], ["Credentials", "credentials"], ["Contact", "contact"]
   ];
 
@@ -27,9 +29,8 @@
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links"><span class="sr-only">Toggle navigation</span><i></i><i></i><i></i></button>
         <div class="nav-links" id="nav-links">
           <a href="#home" data-section="home">Home</a>
-          <a href="#profile" data-section="profile">Executive Profile</a>
           <details class="nav-group" id="portfolio-menu">
-            <summary>Executive Portfolio <span aria-hidden="true">⌄</span></summary>
+            <summary>Executive Profile <span aria-hidden="true">⌄</span></summary>
             <div class="nav-submenu">${portfolioNavItems.map(([label, id]) => `<a href="#${id}" data-section="${id}">${label}</a>`).join("")}</div>
           </details>
           <details class="nav-group" id="services-menu">
@@ -82,6 +83,7 @@
       </section>
       <section class="section" id="capabilities"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Executive Capability Matrix</p><h2>Leadership capability grounded in delivery.</h2></div><div class="capability-grid">${D.capabilities.map((c) => `<article class="card reveal"><h3>${c.title}</h3>${list(c.items)}</article>`).join("")}</div></div></section>
       <section class="section navy" id="case-studies"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Transformation Case Studies</p><h2>Selected enterprise transformation themes.</h2><p>Sanitised examples focused on the challenge, leadership action and operational outcome.</p></div><div class="case-grid">${D.caseStudies.map((c, i) => `<article class="case-card reveal"><span class="case-number">0${i + 1}</span><h3>${c.title}</h3><h4>Business challenge</h4><p>${c.challenge}</p><h4>Leadership actions</h4>${list(c.actions)}<div class="outcome"><h4>Outcome</h4><p>${c.outcome}</p></div><p class="case-cap">${c.capabilities}</p></article>`).join("")}</div></div></section>
+      <section class="section github-work" id="github-work"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Technical Portfolio</p><h2>Selected work on GitHub.</h2><p>Security tooling, automation, mobile engineering and cloud-modernisation work that underpins Hema’s enterprise leadership perspective.</p></div><div class="work-filters reveal" aria-label="Filter selected work">${["All", ...new Set(D.githubWork.map((project) => project.category))].map((category, index) => `<button type="button" class="work-filter${index === 0 ? " active" : ""}" data-project-filter="${category}" aria-pressed="${index === 0}">${category}</button>`).join("")}</div><div class="work-grid">${D.githubWork.map((project) => `<article class="work-card reveal" data-project-category="${project.category}">${project.image ? `<div class="work-image"><img src="${project.image}" alt="" loading="lazy"><span>${project.category}</span></div>` : `<div class="work-image work-placeholder"><span>${project.category}</span><strong>${project.title.split(" ").slice(0, 2).join(" ")}</strong></div>`}<div class="work-body"><div class="work-meta"><span>${project.year}</span><span>${project.context}</span></div><h3>${project.title}</h3><p>${project.description}</p><div class="work-outcome"><strong>Outcome</strong><span>${project.outcome}</span></div><div class="work-tech">${project.technologies.map((technology) => `<span>${technology}</span>`).join("")}</div><a class="text-link" href="${project.link}" ${external}>${project.public ? "View repository" : "View technical profile"} ${icon("arrowUpRight")}</a>${project.public ? "" : '<small class="work-note">Project details may be sanitised or privately held.</small>'}</div></article>`).join("")}</div></div></section>
       <section class="section" id="advisory"><div class="container advisory-grid"><div class="section-heading reveal"><p class="eyebrow">Advisory and Entrepreneurship</p><h2>${D.advisory.title}</h2><p>${D.advisory.text}</p>${C.consultancyUrl ? `<a class="text-link" href="${C.consultancyUrl}" ${external}>Visit HDS Consultancy ${icon("arrowUpRight")}</a>` : ""}<small>${D.advisory.note}</small></div><div class="advisory-list reveal">${D.advisory.items.map((x) => `<span>${icon("check")}${x}</span>`).join("")}</div></div></section>
       <section class="section services-section" id="services"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Professional Services</p><h2>Technology expertise shaped around your organisation’s needs.</h2><p>Focused advisory, delivery and capability-building services for employers, businesses and professionals.</p></div><div class="service-grid">${D.services.map((service, index) => `<article class="service-card reveal" id="${service.id}"><span class="service-number">0${index + 1}</span><h3>${service.title}</h3><p>${service.summary}</p><small>${service.audience}</small><a class="button secondary service-enquiry" href="#contact" data-service-choice="${service.title}">Enquire about this service ${icon("arrow")}</a></article>`).join("")}</div></div></section>
       <section class="section muted" id="insights"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Insights</p><h2>Perspectives on technology leadership.</h2></div><div class="insight-grid">${D.insights.map((x) => `<article class="insight-card reveal"><div><span>${x.category}</span><span>${x.readTime}</span></div><h3>${x.title}</h3><p>${x.summary}</p><strong>${x.status}</strong></article>`).join("")}</div></div></section>
@@ -100,10 +102,10 @@
   document.querySelector('meta[property="og:image"]').content = `${C.siteUrl}/assets/hema-professional-office.jpg`;
   document.getElementById("person-schema").textContent = JSON.stringify({
     "@context": "https://schema.org", "@type": "Person", name: C.name,
-    jobTitle: "Technology and Enterprise Transformation Leader", url: C.siteUrl,
+    jobTitle: "Technology Executive and Enterprise Transformation Leader", url: C.siteUrl,
     sameAs: [C.linkedinUrl, C.githubUrl],
     alumniOf: [{ "@type": "CollegeOrUniversity", name: "University of Wales Trinity Saint David" }, { "@type": "CollegeOrUniversity", name: "Staffordshire University" }],
-    knowsAbout: ["Technology strategy", "Enterprise transformation", "Cloud modernisation", "Cybersecurity", "IT governance", "Enterprise architecture", "IT service management"]
+    knowsAbout: ["Technology strategy", "Enterprise transformation", "Digital transformation", "Cloud modernisation", "Cybersecurity leadership", "IT governance", "Enterprise architecture", "IT service management", "Operational resilience", "Vendor management", "Technology operating models"]
   });
 
   const menuButton = document.getElementById("menu-toggle");
@@ -185,5 +187,16 @@
   });
   document.querySelectorAll("[data-service-choice]").forEach((link) => link.addEventListener("click", () => {
     document.getElementById("contact-service").value = link.dataset.serviceChoice;
+  }));
+  document.querySelectorAll("[data-project-filter]").forEach((button) => button.addEventListener("click", () => {
+    const selected = button.dataset.projectFilter;
+    document.querySelectorAll("[data-project-filter]").forEach((filter) => {
+      const active = filter === button;
+      filter.classList.toggle("active", active);
+      filter.setAttribute("aria-pressed", String(active));
+    });
+    document.querySelectorAll("[data-project-category]").forEach((card) => {
+      card.hidden = selected !== "All" && card.dataset.projectCategory !== selected;
+    });
   }));
 })();
