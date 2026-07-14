@@ -11,7 +11,16 @@
 .contact-form { display: grid; }
 .contact-form .button { width: 100%; margin-top: .6rem; }
 .repository-status { margin-top: 1rem; text-align: center; }
+.case-studies-section { background: var(--color-cream); }
+.case-studies-cta { display: grid; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.35rem; background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.case-studies-cta h2 { margin-bottom: .35rem; font-size: clamp(1.05rem, 2vw, 1.35rem); letter-spacing: -.02em; }
+.case-studies-cta p { margin: 0; font-size: .88rem; }
+.case-studies-cta .button { width: 100%; }
 @media (min-width: 768px) { .contact-layout { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); align-items: start; gap: 2rem; } }
+@media (min-width: 768px) {
+  .case-studies-cta { grid-template-columns: auto minmax(0, 1fr) auto; padding: 1.4rem 1.6rem; }
+  .case-studies-cta .button { width: auto; min-width: 10rem; }
+}
 @media (max-width: 479px) {
   .page-hero h1, .home-hero h1 { font-size: clamp(2.1rem, 11vw, 3rem); overflow-wrap: normal; }
   .whatsapp-float { width: 3rem; height: 3rem; font-size: .75rem; }
