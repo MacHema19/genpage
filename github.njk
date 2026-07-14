@@ -1,11 +1,26 @@
 ---
-layout: layouts/page.njk
+layout: layouts/base.njk
 permalink: github.html
 pageKey: github
 title: GitHub Repositories
-eyebrow: Technical Portfolio
-intro: Open-source projects, automation scripts and solution prototypes.
 metaDescription: Public GitHub repositories and selected engineering work by Hema Darshini Selvaraju.
 ---
-{# Public GitHub repository listing with client-side API enhancement. #}
-<section class="section"><div class="container"><div class="repository-grid" data-repository-list></div><p class="repository-status" data-repository-status aria-live="polite"></p><noscript><p>JavaScript is required to refresh repository information. Visit <a href="{{ site.github }}">Hema’s GitHub profile</a>.</p></noscript></div></section>
+{# Build-time GitHub repository portfolio with verified public metadata. #}
+{% from "components/icons.njk" import icon %}
+{% from "components/repository-card.njk" import repositoryCard %}
+<section class="github-hero">
+  <div class="container github-hero__inner">
+    <p class="eyebrow">Technology Executive &amp; Enterprise Transformation Leader</p>
+    <h1>GitHub Repositories</h1>
+    <p>Open-source projects, automation scripts and solution prototypes.</p>
+    <a class="button button--secondary" href="{{ github.profileUrl }}" target="_blank" rel="noopener noreferrer">{{ icon('github') }} View GitHub Profile {{ icon('external') }}</a>
+  </div>
+</section>
+<section class="section repositories-section">
+  <div class="container">
+    <div class="repository-grid">
+      {% for repository in github.repositories %}{{ repositoryCard(repository) }}{% endfor %}
+    </div>
+    <div class="section-action"><a class="repository-more" href="{{ github.profileUrl }}" target="_blank" rel="noopener noreferrer">View More Repositories {{ icon('arrow') }}</a></div>
+  </div>
+</section>

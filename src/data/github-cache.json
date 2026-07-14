@@ -1,0 +1,54 @@
+[
+  {
+    "name": "azure-fastapi-order-app",
+    "description": "Demonstrate end to end pipeline for fastapi order app to azure public cloud services",
+    "language": "Python",
+    "technologies": ["Python", "FastAPI", "Azure"],
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-05-29T13:40:47Z",
+    "html_url": "https://github.com/MacHema19/azure-fastapi-order-app",
+    "homepage": null,
+    "visibility": "public",
+    "icon": "rocket"
+  },
+  {
+    "name": "Hema_EbayDevAPi",
+    "description": "Connect with eBay through a Python API integration.",
+    "language": "Python",
+    "technologies": ["Python", "API Integration", "eBay"],
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-05-28T07:12:36Z",
+    "html_url": "https://github.com/MacHema19/Hema_EbayDevAPi",
+    "homepage": null,
+    "visibility": "public",
+    "icon": "quality"
+  },
+  {
+    "name": "blockchain_fastapi_smartcontract_hd",
+    "description": "Blockchain API built with FastAPI.",
+    "language": "Python",
+    "technologies": ["Python", "FastAPI", "Blockchain"],
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-05-29T02:55:38Z",
+    "html_url": "https://github.com/MacHema19/blockchain_fastapi_smartcontract_hd",
+    "homepage": null,
+    "visibility": "public",
+    "icon": "shield"
+  },
+  {
+    "name": "machema19.github.io",
+    "description": "Executive technology portfolio website.",
+    "language": "JavaScript",
+    "technologies": ["JavaScript", "Eleventy", "GitHub Pages"],
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "updated_at": "2026-07-13T07:44:56Z",
+    "html_url": "https://github.com/MacHema19/machema19.github.io",
+    "homepage": "https://machema19.github.io",
+    "visibility": "public",
+    "icon": "building"
+  }
+]

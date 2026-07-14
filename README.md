@@ -68,7 +68,9 @@ Reading time is calculated automatically during the build. Featured published ar
 
 ## GitHub API configuration
 
-Edit `src/js/config/github-config.js` to change the username, featured repositories, cache duration or safe fallback records. The browser requests only public repositories. If GitHub is unavailable or rate-limited, cached data is used and the page displays an availability message.
+Edit `src/data/github.js` to change the verified username or `featuredRepositories` list. Eleventy requests public repository metadata during the build; no API token or repository request is exposed to the visitor’s browser.
+
+`src/data/github-cache.json` contains the committed public fallback used for offline or rate-limited builds. Refresh this file only with verified public repository names, links and statistics from the GitHub API.
 
 Do not list private repositories in fallback data or public project links.
 

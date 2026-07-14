@@ -1,0 +1,15 @@
+{# Reusable build-time repository card generated from verified GitHub data. #}
+{% macro repositoryCard(repository, homepage=false) %}
+{% from "components/icons.njk" import icon %}
+<a class="repository-card" href="{{ repository.html_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ repository.name }} on GitHub">
+  <div class="repository-card__top"><span class="repository-card__icon">{{ icon(repository.icon) }}</span><span class="repository-card__external">{{ icon('external') }}</span></div>
+  {% if homepage %}<h3>{{ repository.name }}</h3>{% else %}<h2>{{ repository.name }}</h2>{% endif %}
+  <p>{{ repository.description }}</p>
+  <div class="tag-list">{% for technology in repository.technologies %}<span>{{ technology }}</span>{% endfor %}</div>
+  <div class="repository-card__footer">
+    <span>☆ {{ repository.stargazers_count }}</span>
+    <span>⑂ {{ repository.forks_count }}</span>
+    <span>{{ icon('clock') }} Updated {{ repository.updated_at | readableDate }}</span>
+  </div>
+</a>
+{% endmacro %}
