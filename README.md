@@ -45,7 +45,7 @@ Generated files are written to `_site/`.
 7. Confirm the GitHub Actions deployment completed.
 8. Open the live Insights page.
 
-Drafts with `published: false` do not appear on the homepage, Insights page, article routes or sitemap.
+Drafts with `published: false` or `draft: true` do not appear on the homepage, Insights page, article routes or sitemap.
 
 ## Article front matter
 

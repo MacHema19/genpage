@@ -3,6 +3,6 @@
  */
 export default {
   permalink(data) {
-    return data.published === false ? false : `insights/${data.slug}/index.html`;
+    return data.published === false || data.draft === true ? false : `insights/${data.slug}/index.html`;
   }
 };

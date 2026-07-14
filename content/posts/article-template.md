@@ -9,6 +9,7 @@ coverImage: "/assets/articles/governance.svg"
 tags: ["Technology Leadership"]
 featured: false
 published: false
+draft: true
 ---
 
 Draft content is excluded from public collections while `published` is false.
