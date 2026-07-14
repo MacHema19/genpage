@@ -1,5 +1,4 @@
-.DS_Store
-.vscode/
+# Generated Eleventy output and local dependencies.
+_site/
 node_modules/
-dist/
-*.log
+.DS_Store

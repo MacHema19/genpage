@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+ogType: article
+pageKey: insights
+eleventyComputed:
+  metaTitle: "{{ title }}"
+  metaDescription: "{{ summary }}"
+  schema:
+    "@context": "https://schema.org"
+    "@type": "Article"
+    headline: "{{ title }}"
+    description: "{{ summary }}"
+    datePublished: "{{ date | htmlDateString }}"
+    author:
+      "@type": "Person"
+      name: "{{ site.name }}"
+    image: "{{ site.siteUrl }}{{ coverImage }}"
+    mainEntityOfPage: "{{ site.siteUrl }}{{ page.url }}"
+---
+{# Markdown article layout with Article schema and adjacent-post navigation. #}
+<article class="article container">
+  <a class="back-link" href="/insights.html">← Back to Insights</a>
+  <header class="article__header"><p class="eyebrow">{{ category }}</p><h1>{{ title }}</h1><p class="article__summary">{{ summary }}</p><div class="article__meta"><time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time><span>{{ content | readingTime }}</span></div></header>
+  <img class="article__cover" src="{{ coverImage }}" alt="" width="1200" height="675">
+  <div class="prose">{{ content | safe }}</div>
+  <nav class="article-nav" aria-label="Article navigation">
+    {% set previousPost = collections.publishedPosts | getPreviousCollectionItem %}{% set nextPost = collections.publishedPosts | getNextCollectionItem %}
+    {% if previousPost %}<a href="{{ previousPost.url }}"><span>Previous</span>{{ previousPost.data.title }}</a>{% endif %}
+    {% if nextPost %}<a href="{{ nextPost.url }}"><span>Next</span>{{ nextPost.data.title }}</a>{% endif %}
+  </nav>
+</article>

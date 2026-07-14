@@ -1,0 +1,17 @@
+{
+  "name": "hema-executive-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "node scripts/clean-output.js && eleventy",
+    "validate": "node scripts/validate-build.js",
+    "validate:html": "html-validate '_site/**/*.html'"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "html-validate": "^11.5.6",
+    "markdown-it": "^14.1.0"
+  }
+}

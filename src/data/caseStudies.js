@@ -1,0 +1,8 @@
+/**
+ * Executive case studies. Only verified metrics are rendered by templates.
+ */
+export default [
+  { icon: "deploy", title: "Enterprise Deployment Governance", challenge: "Complex regulated releases required stronger readiness, traceability and cross-functional control.", actions: ["Coordinated application, infrastructure, security, vendor and operations stakeholders.", "Strengthened governance checkpoints and production-readiness assurance.", "Improved operational evidence and deployment traceability."], outcome: "Improved governance discipline, delivery visibility and operational assurance.", metrics: [] },
+  { icon: "quality", title: "QA Automation and Quality Engineering", challenge: "Enterprise delivery teams required repeatable quality practices, automation and clearer ownership.", actions: ["Established QA practices and governance.", "Introduced automation and supported CI/CD adoption.", "Developed operational reporting and cross-team quality ownership."], outcome: "Strengthened delivery consistency, quality visibility and automation maturity.", metrics: [] },
+  { icon: "resilience", title: "Operational Resilience and Major Incident Management", challenge: "Enterprise and banking clients required coordinated response across multiple infrastructure towers.", actions: ["Led critical escalation across network, security, Wintel, systems and support teams.", "Supported RCA and problem-management reviews.", "Managed SLA communication, vendors and stakeholder accountability."], outcome: "Improved incident coordination, service visibility and operational accountability.", metrics: [] }
+];

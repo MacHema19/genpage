@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+---
+{# Inner-page layout with breadcrumbs and a consistent page introduction. #}
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">{{ title }}</span></nav>
+    <p class="eyebrow">{{ eyebrow or site.title }}</p>
+    <h1>{{ title }}</h1>
+    {% if intro %}<p>{{ intro }}</p>{% endif %}
+  </div>
+</section>
+{{ content | safe }}

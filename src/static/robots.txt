@@ -1,0 +1,5 @@
+# Search crawler policy for the public executive portfolio.
+User-agent: *
+Allow: /
+
+Sitemap: https://machema19.github.io/sitemap.xml

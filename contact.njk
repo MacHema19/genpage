@@ -1,0 +1,11 @@
+---
+layout: layouts/page.njk
+permalink: contact.html
+pageKey: contact
+title: Let’s Connect
+eyebrow: Contact
+intro: Discuss technology leadership, enterprise transformation, architecture, advisory or strategic consulting opportunities.
+metaDescription: Contact Hema Darshini Selvaraju for technology leadership, transformation and advisory opportunities.
+---
+{# Professional contact page with validated mailto fallback. #}
+<section class="section"><div class="container contact-layout"><aside class="contact-methods"><h2>Professional contact</h2><a href="mailto:{{ site.email }}"><span>Email</span>{{ site.email }}</a><a href="{{ site.linkedin }}" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span>Connect professionally</a><a href="{{ site.github }}" target="_blank" rel="noopener noreferrer"><span>GitHub</span>View technical profile</a><a href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span>Start a conversation</a><div><span>Location</span>{{ site.location }}</div><a class="button button--secondary resume-link" href="{{ site.resumeUrl }}">Download Résumé</a></aside><form class="contact-form" data-contact-form novalidate><h2>Prepare an email enquiry</h2><p>This form validates your enquiry and opens your email application. It does not send information to a third-party service.</p><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required><span class="field-error" data-error="name"></span><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><span class="field-error" data-error="email"></span><label for="subject">Subject</label><input id="subject" name="subject" type="text" required><span class="field-error" data-error="subject"></span><label for="message">Message</label><textarea id="message" name="message" rows="6" minlength="20" required></textarea><span class="field-error" data-error="message"></span><button class="button button--primary" type="submit" data-submit>Prepare Email</button><p class="form-status" data-form-status aria-live="polite"></p></form></div></section>

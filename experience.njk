@@ -1,0 +1,11 @@
+---
+layout: layouts/page.njk
+permalink: experience.html
+pageKey: experience
+title: Leadership Experience
+eyebrow: Executive Career
+intro: Technology leadership across insurance, shared services, cybersecurity and enterprise operations.
+metaDescription: Leadership experience across deployment governance, quality engineering, cybersecurity, IT operations and major incident management.
+---
+{# Executive experience timeline page. #}
+<section class="section"><div class="container timeline">{% for role in experience %}<article class="experience-item" data-reveal><div class="experience-item__marker">{{ role.initials }}</div><div class="experience-item__card">{% if role.dates %}<p class="experience-item__date">{{ role.dates }}</p>{% endif %}<h2>{{ role.title }}</h2><p class="experience-item__company">{{ role.company }}</p><p class="experience-item__context">{{ role.context }}</p><p>{{ role.summary }}</p><div class="tag-list">{% for tag in role.tags %}<span>{{ tag }}</span>{% endfor %}</div><details><summary>Selected achievements</summary><ul>{% for achievement in role.achievements %}<li>{{ achievement }}</li>{% endfor %}</ul></details></div></article>{% endfor %}</div></section>

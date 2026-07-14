@@ -1,0 +1,12 @@
+---
+layout: layouts/page.njk
+permalink: insights.html
+pageKey: insights
+title: Insights
+eyebrow: Executive Perspectives
+intro: Practical thinking on governance, transformation, delivery and resilient technology operations.
+metaDescription: Articles on technology governance, cloud transformation, delivery risk and enterprise operational resilience.
+---
+{# Published Markdown article listing page. #}
+{% from "components/icons.njk" import icon %}
+<section class="section"><div class="container article-grid">{% for post in collections.publishedPosts %}<article class="article-card" data-reveal><img src="{{ post.data.coverImage }}" alt="" width="600" height="338" loading="lazy"><div class="article-card__body"><div class="card-meta"><span>{{ post.data.category }}</span><time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time></div><h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2><p>{{ post.data.summary }}</p><div class="tag-list">{% for tag in post.data.tags %}<span>{{ tag }}</span>{% endfor %}</div><div class="card-footer"><span>{{ post.content | readingTime }}</span><a href="{{ post.url }}">Read More {{ icon('arrow') }}</a></div></div></article>{% endfor %}</div></section>

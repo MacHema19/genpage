@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+permalink: index.html
+pageKey: home
+title: Technology Executive & Enterprise Transformation Leader
+metaTitle: Technology Executive, Head of IT and Digital Transformation Leader
+metaDescription: Senior technology leadership portfolio spanning enterprise transformation, cloud modernisation, cybersecurity, IT governance, architecture and operational resilience.
+schema:
+  "@context": "https://schema.org"
+  "@graph":
+    - "@type": "WebSite"
+      name: "Hema Darshini Selvaraju Executive Portfolio"
+      url: "https://machema19.github.io"
+    - "@type": "Person"
+      name: "Hema Darshini Selvaraju"
+      jobTitle: "Technology Executive and Enterprise Transformation Leader"
+      url: "https://machema19.github.io"
+      sameAs:
+        - "https://www.linkedin.com/in/hema-darshini-selvaraju"
+        - "https://github.com/MacHema19"
+---
+{# Homepage for executive positioning, impact, insights and GitHub previews. #}
+{% from "components/icons.njk" import icon %}
+<section class="home-hero">
+  <div class="container home-hero__grid">
+    <div class="home-hero__copy" data-reveal>
+      <p class="eyebrow">{{ profile.label }}</p>
+      <h1>{{ profile.name }}</h1>
+      <p class="home-hero__summary">{{ profile.summary }}</p>
+      <div class="home-hero__mobile-portrait"><img src="{{ site.portrait }}" alt="Professional portrait of {{ site.name }}" width="1122" height="1402"></div>
+      <div class="button-row"><a class="button button--primary" href="/experience.html">View Executive Profile {{ icon('arrow') }}</a><a class="button button--secondary resume-link" href="{{ site.resumeUrl }}">Download Résumé</a></div>
+    </div>
+    <div class="home-hero__portrait" data-reveal><div class="portrait-shape" aria-hidden="true"></div><img src="{{ site.portrait }}" alt="Professional portrait of {{ site.name }}" width="1122" height="1402"></div>
+  </div>
+</section>
+<section class="metrics" aria-label="Executive metrics"><div class="container metrics__grid">{% for metric in profile.metrics %}<article class="metric">{{ icon(metric.icon) }}<div><strong>{{ metric.value }}</strong><span>{{ metric.label }}</span></div></article>{% endfor %}</div></section>
+<section class="section"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow">Executive Impact</p><h2>Transform. Govern. Operate.</h2><p>Enterprise leadership that connects technology strategy with secure, resilient delivery.</p></div><div class="impact-grid">{% for item in profile.impacts %}<article class="impact-card" data-reveal><div class="icon-frame">{{ icon(item.icon) }}</div><div><h3>{{ item.title }}</h3><p>{{ item.description }}</p><a href="{{ item.url }}" aria-label="Explore {{ item.title }}">Explore {{ icon('arrow') }}</a></div></article>{% endfor %}</div></div></section>
+<section class="section section--soft"><div class="container"><div class="section-heading"><p class="eyebrow">Latest Insights</p><h2>Technology leadership perspectives</h2></div><div class="article-grid">{% for post in collections.featuredPosts %}<article class="article-card" data-reveal><img src="{{ post.data.coverImage }}" alt="" width="600" height="338" loading="lazy"><div class="article-card__body"><div class="card-meta"><span>{{ post.data.category }}</span><time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time></div><h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3><p>{{ post.data.summary }}</p><div class="card-footer"><span>{{ post.content | readingTime }}</span><a href="{{ post.url }}">Read More {{ icon('arrow') }}</a></div></div></article>{% endfor %}</div><div class="section-action"><a class="button button--secondary" href="/insights.html">View All Insights</a></div></div></section>
+<section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">Featured GitHub Repositories</p><h2>Engineering foundations behind the leadership</h2></div><div class="repository-grid" data-repository-list data-limit="4"></div><p class="repository-status" data-repository-status aria-live="polite"></p><div class="section-action"><a class="button button--secondary" href="/github.html">View All Repositories</a></div></div></section>

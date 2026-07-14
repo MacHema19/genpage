@@ -1,0 +1,16 @@
+{# Shared site header with desktop and mobile navigation. #}
+<header class="site-header" data-header>
+  <div class="container header__inner">
+    <a class="brand" href="/" aria-label="{{ site.name }} home"><span>{{ site.initials }}</span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {% for item in navigation %}<a href="{{ item.url }}"{% if pageKey == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a>{% endfor %}
+    </nav>
+    <a class="button button--primary header__cta" href="/contact.html">Let’s Connect</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" data-menu-toggle>
+      <span class="sr-only">Open navigation</span><i></i><i></i><i></i>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" data-mobile-nav hidden>
+    <div class="mobile-nav__inner">{% for item in navigation %}<a href="{{ item.url }}"{% if pageKey == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a>{% endfor %}<a class="button button--primary" href="/contact.html">Let’s Connect</a></div>
+  </nav>
+</header>
