@@ -47,5 +47,6 @@
 .site-footer nav a:hover { text-decoration: underline; }
 .footer__meta { grid-column: 1/-1; margin: 0; padding-top: 1.3rem; border-top: 1px solid rgba(255,255,255,.14); font-size: .8rem; }
 .whatsapp-float { position: fixed; right: 1rem; bottom: 1rem; z-index: 40; display: grid; width: 3.5rem; height: 3.5rem; place-items: center; background: #25a95c; color: #fff; border: 3px solid #fff; border-radius: 50%; box-shadow: var(--shadow-md); font-weight: 700; }
+.whatsapp-float svg { width: 1.75rem; height: 1.75rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .icon { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 @media (min-width: 768px) { .container { width: min(calc(100% - 4rem), var(--container)); } .footer__grid { grid-template-columns: 1fr auto; } }
