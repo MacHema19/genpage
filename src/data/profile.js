@@ -9,13 +9,13 @@ export default {
     { icon: "calendar", value: "19+", label: "Years of Experience" },
     { icon: "globe", value: "3", label: "Continents" },
     { icon: "building", value: "5+", label: "Industries" },
-    { icon: "layers", value: "Multi-cloud", label: "AWS · Azure · GCP" },
-    { icon: "globe", value: "Global", label: "Leadership Exposure" },
-    { icon: "education", value: "MBA", label: "BSc IT Security" }
+    { icon: "layers", value: "100+", label: "Projects Delivered" },
+    { icon: "globe", value: "Global", label: "Leadership" },
+    { icon: "education", value: "MBA", label: "MBA / IT Security" }
   ],
   impacts: [
-    { icon: "transform", title: "Transform", description: "Drive enterprise transformation, cloud modernisation and digital delivery with business-aligned governance.", url: "/case-studies.html" },
-    { icon: "shield", title: "Govern", description: "Strengthen technology governance, risk management, cybersecurity controls and audit readiness.", url: "/case-studies.html" },
-    { icon: "operate", title: "Operate", description: "Build resilient technology operations through ITSM, observability and cross-functional service leadership.", url: "/experience.html" }
+    { icon: "transform", title: "Transform", description: "Drive enterprise transformation, cloud modernisation and digital innovation with measurable business impact.", url: "/case-studies.html" },
+    { icon: "shield", title: "Govern", description: "Strengthen governance, risk management, compliance and technology control across complex landscapes.", url: "/case-studies.html" },
+    { icon: "operate", title: "Operate", description: "Ensure operational resilience, service optimisation and continuous improvement at enterprise scale.", url: "/experience.html" }
   ]
 };

@@ -1,7 +1,7 @@
 {# Shared site header with desktop and mobile navigation. #}
 <header class="site-header" data-header>
   <div class="container header__inner">
-    <a class="brand" href="/" aria-label="{{ site.name }} home"><span>{{ site.initials }}</span></a>
+    <a class="brand" href="/" aria-label="{{ site.name }} home"><span>{{ site.initials }}</span><span class="brand__copy"><strong>{{ site.name }}</strong><small>Technology Executive &amp;<br>Enterprise Transformation Leader</small></span></a>
     <nav class="desktop-nav" aria-label="Primary navigation">
       {% for item in navigation %}<a href="{{ item.url }}"{% if pageKey == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a>{% endfor %}
     </nav>
